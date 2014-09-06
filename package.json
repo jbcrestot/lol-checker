@@ -1,0 +1,14 @@
+{
+    "name": "lol-checker",
+    "version": "0.1.0",
+    "description": "Une application de plus pour regarder les stats de son profil League of Legend",
+    "author": "Jean-Baptiste Crestot <jbcrestot@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jbcrestot/lol-checker.git"
+    },
+    "dependencies": {
+        "express": "~4.8.8"
+    }
+}
+
