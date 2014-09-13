@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Summoner's page
+{% endblock title %}
+
+{% block header %}
+    Bienvenue {{ summonerName }}
+{% endblock header %}
+
+{% block content %}
+    <div class="json">
+        
+    </div>
+    <script type="text/javascript">
+        a = {{ result|safe }};
+        console.log( a );
+    </script>
+{% endblock content %}

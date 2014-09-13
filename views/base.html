@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>lol-checked - {% block title '' %}</title>
+        <title>lol-checker - {% block title %}{% endblock title %}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
     </head>
     <body>
         <header>
-            {% block header '' %}
+            {% block header %}{% endblock header %}
         </header>
         <div>
-            {% block content '' %}
+            {% block content %}{% endblock content %}
         </div>
         <footer>
             {% block footer %}
