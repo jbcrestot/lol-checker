@@ -2,30 +2,56 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 var clc = require('cli-color');
+var _ = require('underscore');
+
 var parameters = require('../parameters.js');
+var repositoryUser = require('../model/user.js');
 
 
 /* GET home page. */
 router
         .get('/', function(req, res) {
-            res.render('index.html', {title: 'Express'});
+            console.log('affichage index');
+    
+            res.render('index.html');
         })
+        .post('/', function(req, res) {
+            summonerName = req.param('summonerName');
+            if ( !_.isUndefined(summonerName) ) {
+                // on vérifie qu'on a pas deja l'utilisateur
+                repositoryUser.get( summonerName, function( summoner ) {
+                    // si le retour est null, c'est un nouvel utilisateur
+                    if ( !_.isNull( summoner ) ) {
+                        res.redirect('/summoner/'+summoner);
+                        return ;
+                    }
+
+                    getSummoner('euw', summonerName, function(foundUser) {
+                        repositoryUser.save(foundUser);
+
+                        res.render('index.html', {summonerName: summonerName});
+                    });
+                });
+            }
+        })
+        
         // mandatory for riot API
-        .get('riot.html', function(req, res) {
+        .get('/riot.html', function(req, res) {
             res.render('riot.html');
         })
 
         .get('/summoner/:summonerName', function(req, res) {
-
-            getSummoner(res, 'euw', req.params.summonerName, function(result) {
-                
-                res.render('summoner.html', {summonerName: req.params.summonerName, result: result});
-            });
+             
+            res.render('summoner.html', {summonerName: req.params.summonerName});
         })
 
         ;
 
-var getSummoner = function(res, region, summonerName, callBack) {
+var getSummoner = function(region, summonerName, callBack) {
+//    mock
+//    var a = {"undefined":{"id":19897772,"name":"Undefined","profileIconId":692,"summonerLevel":30,"revisionDate":1410898743000}}; callBack(a); return ;
+    
+    
     var path = parameters.riotApi.url.base + region + 
             parameters.riotApi.url.bySummonerName + 
             summonerName +'?api_key='+ parameters.riotApi.key,
@@ -51,9 +77,9 @@ var getSummoner = function(res, region, summonerName, callBack) {
                             result += chunk;
                         })
                         .on('end', function(){
-                            console.log( 'result :');
-                            console.log( result );
-                                callBack(result);
+                            user = JSON.parse(result);
+                            console.log( 'result :'+ result);
+                            callBack( user[summonerName] );
                         });
                 }
 
