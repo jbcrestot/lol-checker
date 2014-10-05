@@ -23,11 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-    secret: 'la tuture a toto',
-    resave: true,
-    saveUninitialized: true
-}));
+app.use(express.static(path.join(__dirname, 'f5')));
+var parameters = require('../parameters.js');
+
+app.use(session(parameters.session));
 
 app.use('/', routes);
 app.use('/users', users);

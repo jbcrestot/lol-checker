@@ -9,3 +9,6 @@ lol-checker isn't endorsed by Riot Games and doesn't reflect the views or opinio
 
 API docs
 https://developer.riotgames.com/api/methods
+
+compass :
+Go to the f5 folder and just type : "compass compile"

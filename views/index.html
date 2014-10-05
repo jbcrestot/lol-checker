@@ -6,6 +6,14 @@
 
 {% block content %}
     <h1>Bienvenue sur Lol-checker</h1>
+    
+    {% if error %}
+    <div data-alert class="alert-box alert">
+        {{ error }}
+        <a href="#" class="close">&times;</a>
+    </div>
+    {% endif %}
+    
     <form action="/" method="post">
         <input type="text" name="summonerName" id="summoner" placeholder="summoner's name" />
         
