@@ -8,7 +8,7 @@ var _ = require('underscore');
 // application
 var parameters = require('../parameters.js'),
     business = require('../business/business.js'),
-    repositoryUser = require('../model/userRepository.js');
+    userRepository = require('../model/userRepository.js');
 
 // session parameters
 app.use(session(parameters.session));
@@ -25,33 +25,34 @@ router
 
             // summonerName is defined and not an empty string
             if ( !_.isUndefined(summonerName) 
-//                    && '' !== summonerName
+                    && '' !== summonerName
                     ) {
                 // on vérifie qu'on a pas deja l'utilisateur
-                repositoryUser.get( summonerName, function( summoner ) {
+                userRepository.get( summonerName, function( summonerId ) {
                     // si le retour n'est pas null, on a retrouvé l'utilisateur
-                    if ( !_.isNull( summoner ) ) {
-                        req.session.user = summoner;
+                    if ( !_.isNull( summonerId ) ) {
+                        req.session.userId = summonerId;
                         
                         return res.redirect('/summoner/'+summonerName);
                     }
 
                     // si le retour est null, c'est un nouvel utilisateur
-                    business.getSummoner('euw', summonerName, function(foundUser, error) {
+                    business.getSummoner('euw', summonerName, function(foundUser, err) {
                         // if foundUser isn't returned, we got some error
                         if (!_.isObject(foundUser)) {
-                            
-                            return res.render('index.html', {error: error.message});
+
+                            return res.render('index.html', {error: err.error.message});
                         }
-                        
-                        repositoryUser.save(foundUser);
+                        // we save the user if needed
+                        userRepository.save(foundUser);
 
                         return res.render('index.html', {summonerName: summonerName});
                     });
                 });
             }
             else {
-                return res.render('index.html');
+                
+                return res.render('index.html', {error: 'merci d\'entrer un nom de summoner'});
             }
         })
         
@@ -61,7 +62,7 @@ router
         })
 
         .get('/summoner/:summonerName', function(req, res) {
-            console.log(req.session.user);
+            console.log(req.session.userId);
             res.render('summoner.html', {summonerName: req.params.summonerName});
         })
         ;

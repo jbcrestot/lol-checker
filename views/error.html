@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>error</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>{{ message }}</div>
-        <div>{{ error.stack }}</div>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Erreur{% endblock title %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+    <div>{{ message }}</div>
+    <div>{{ error.stack }}</div>
+<a href="/" title="retour à l'accueil doux et chaleureux" class="button tiny radius">Retour</a>
+
+{% endblock content %}

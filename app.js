@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var routes = require('./routes/index.js');
-var users = require('./routes/users');
+var user = require('./routes/user.js');
+var team = require('./routes/team.js');
+var parameters = require('./parameters.js');
 
 var app = express();
 
@@ -24,12 +26,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'f5')));
-var parameters = require('../parameters.js');
 
 app.use(session(parameters.session));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', user);
+app.use('/team', team);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,7 +47,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error.html', {
+        res.render('error'+ err.status +'.html', {
             message: err.message,
             error: err
         });
