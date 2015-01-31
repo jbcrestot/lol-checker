@@ -6,15 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
+        {% block stylesheets %}{% endblock stylesheets %}
         <script src="/bower_components/modernizr/modernizr.js"></script>
     </head>
     <body>
         <header>
             {% block header %}{% endblock header %}
         </header>
-        
+
         {% include "errors.html" %}
-        
+
         <div>
             {% block content %}{% endblock content %}
         </div>
@@ -25,6 +26,5 @@
         </footer>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/bower_components/foundation/js/foundation.min.js"></script>
-        <script src="js/app.js"></script>
     </body>
 </html>
