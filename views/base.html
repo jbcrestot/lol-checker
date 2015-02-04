@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="{% block app %}{% endblock app %}">
     <head>
         <title>lol-checker - {% block title %}{% endblock title %}</title>
         <meta charset="UTF-8">
@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
         {% block stylesheets %}{% endblock stylesheets %}
         <script src="/bower_components/modernizr/modernizr.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
     </head>
     <body>
         <header>
@@ -16,12 +17,12 @@
 
         {% include "errors.html" %}
 
-        <div>
+        <div id="content">
             {% block content %}{% endblock content %}
         </div>
         <footer>
             {% block footer %}
-            JB Crestot - 2014
+            JB Crestot - 2015
             {% endblock footer %}
         </footer>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>

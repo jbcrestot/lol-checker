@@ -26,3 +26,4 @@ node_modules
 /nbproject/private/
 /nbproject
 /parameters.js
+/bower_components

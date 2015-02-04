@@ -26,6 +26,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'f5')));
+//add this so the browser can GET the bower files
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
+
 
 app.use(session(parameters.session));
 
