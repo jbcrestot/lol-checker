@@ -2,9 +2,17 @@
     var app = angular.module('teamRanking', []);
 
     app.controller('ladderController', function() {
-        this.teams = teams.entries;
+        this.teams;
         this.tier = teams.tier;
-        console.log(this.teams);
+
+        this.getTeams = function() {
+            if (_.isUndefined(this.teams)) {
+                sortedTeams = _.sortBy(teams.entries, function(team) { return team.leaguePoints; });
+                this.teams = sortedTeams.reverse();
+            }
+
+            return this.teams;
+        };
     });
 
 })();

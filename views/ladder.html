@@ -9,24 +9,21 @@
 <link href="/stylesheets/min.page.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/min.page2.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
-
-
 {% endblock stylesheets %}
 
 {% block header %}Classement des équipes challenger{% endblock header %}
 
-{% block content %}
+{% block content %}{% raw %}
 <body ng-controller="ladderController as ladder">
-    <p>{{ladder.tier}}</p>
   <div class="GlobalWrapper">
     <div class="headerPadding"></div>
     <div id="InnerWrapContent">
       <div class="nTCLayoutContainer LadderRankingContainer">
         <div class="nContentLayout">
-          <div class="nTableContainer RankingTable">{{ ladder.tier }}
+          <div class="nTableContainer RankingTable">
             <table class="table" id="LadderRakingTable">
               <tbody>
-                <tr ng-repeat="team in ladder.teams">
+                <tr ng-repeat="team in ladder.getTeams()">
                   <td class="Rank">{{$index}}</td>
                   <td class="SummonerName">
                     <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
@@ -66,5 +63,5 @@
     </div>
     <script src="/javascripts/ladder.js"></script>
     <script src="/javascripts/mock/team.js"></script>
-
+{% endraw %}
 {% endblock content %}
