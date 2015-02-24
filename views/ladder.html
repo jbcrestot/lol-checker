@@ -5,63 +5,47 @@
 {% block title %}Classement des équipes{% endblock title %}
 
 {% block stylesheets %}
-<link href="/stylesheets/min.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/min.page.css" rel="stylesheet" type="text/css">
-<link href="/stylesheets/min.page2.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/font-awesome.min.css" rel="stylesheet">
 {% endblock stylesheets %}
 
-{% block header %}Classement des équipes challenger{% endblock header %}
+{% block header %}
+<div class="large-12 columns">Classement des équipes challenger</div>
+
+    {% endblock header %}
 
 {% block content %}{% raw %}
-<body ng-controller="ladderController as ladder">
-  <div class="GlobalWrapper">
-    <div class="headerPadding"></div>
-    <div id="InnerWrapContent">
-      <div class="nTCLayoutContainer LadderRankingContainer">
-        <div class="nContentLayout">
-          <div class="nTableContainer RankingTable">
-            <table class="table" id="LadderRakingTable">
-              <tbody>
-                <tr ng-repeat="team in ladder.getTeams()">
-                  <td class="Rank">{{$index}}</td>
-                  <td class="SummonerName">
-                    <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
-                      <div class="summonerImage">
-                        <img src="//ss.op.gg/images/profile_icons_32/profileIcon767.jpg" width="32" height="32">
-                      </div>
-                      <div class="summonerName">
-                        {{ team.playerOrTeamName }}
-                      </div>
-                    </a>
-                  </td>
-                    <td class="SummonerInfo">
-                      <div class="summonerTierRank"><span class="tierRank">{{ ladder.tier }} {{ team.division }}</span></div>
-                      <div class="summonerLeaguePoint">
-                        {{ team.leaguePoints}} LP
-                      </div>
-                    </td>
-                    <td class="SummonerWinsLosses">
-                      <div class="progress">
-                        <div class="bar blue" style="width: {{ team.wins*100/(team.wins + team.losses) }}%;">{{ team.wins }}</div>
-                        <div class="bar red" style="width: {{ team.losses*100/(team.wins + team.losses) }}%;">{{ team.losses }}</div>
-                      </div>
-                      <div class="winRatio">
-                          {{ team.wins*100/(team.wins + team.losses) }}%
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="RankingTableMore">
-                <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See more</button>
-              </div>
-            </div>
-          </div>
+{# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #}
+<div ng-controller="ladderController as ladder">
+        <div class="large-2 columns"></div>
+        <div class="large-8 columns ladderTable">
+                <h3>{{ ladder.tier }} {{ ladder.getTeams()[0].division }}</h3>
+                <div class="row ladderRow" ng-class="$last ? 'lastRow' : ''" ng-repeat="team in ladder.getTeams()">
+                        <div class="large-1 columns rank">{{ $index+1 }}</div>
+                        <div class="large-5 columns summonerName">
+                                <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
+                                        {{ team.playerOrTeamName }}
+                                </a>
+                        </div>
+                        <div class="large-2 columns summonerInfo">
+                                {{ team.leaguePoints}} LP
+                        </div>
+                        <div class="large-4 columns summonerWinsLosses">
+                                <div class="row progress">
+                                        <div class="bar blue" style="width: {{ team.wins*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.wins }}</div>
+                                        <div class="bar red" style="width: {{ team.losses*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.losses }}</div>
+                                </div>
+                                <div class="row winRatio">
+                                        {{ team.wins*100/(team.wins + team.losses) | number : 0}}%
+                                </div>
+                        </div>
+                </div>
+
+                <div class="RankingTableMore">
+                        <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See more</button>
+                </div>
         </div>
-      </div>
-    </div>
-    <script src="/javascripts/ladder.js"></script>
-    <script src="/javascripts/mock/team.js"></script>
+        <div class="large-2 columns"></div>
+        <script src="/javascripts/ladder.js"></script>
+        <script src="/javascripts/mock/team.js"></script>
 {% endraw %}
 {% endblock content %}

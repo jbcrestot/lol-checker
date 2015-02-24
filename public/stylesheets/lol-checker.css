@@ -1,4 +1,45 @@
-/* 
+/*
     Created on : 5 oct. 2014, 21:01:35
     Author     : jbcrestot
 */
+body {
+    background-color: #f5f7f7;
+}
+
+.bordure {
+    border: 1px solid black;
+}
+
+.ladderTable {
+        font-size: 11px;
+        font-family: Arial;
+}
+
+        .bar.blue {
+                float: left;
+                position: relative;
+                background-color: #3498db;
+        }
+
+        .bar.red {
+                float: left;
+                position: relative;
+                background-color: #e74c3c;
+        }
+
+        .ladderRow {
+                border: 1px solid gray;
+                border-bottom: none;
+        }
+
+        .lastRow {
+                border-bottom: 1px solid gray;
+        }
+
+        .summonerName, .rank, .summonerInfo {
+                line-height: 3;
+        }
+
+        .summonerName {
+                font-weight: bold;
+        }

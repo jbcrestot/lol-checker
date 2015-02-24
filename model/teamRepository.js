@@ -3,7 +3,7 @@ var redis = require('redis'),
     orange = clc.xterm(208),
     client = redis.createClient(),
     _ = require('underscore');
-    
+
     redis.debug_mode = false;
 
 
@@ -30,7 +30,7 @@ var redisLog = function(message){
 
 /**
  * HMSET
- * 
+ *
  * redis> HMSET myhash field1 "Hello" field2 "World"
  * redis> HGET myhash field1
  * "Hello"
