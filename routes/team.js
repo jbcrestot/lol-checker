@@ -15,9 +15,10 @@ router
     })
     .get('/ladder', function(req, res) {
 
-        teamBusiness.getChallenger();
+        teamBusiness.getChallenger('euw', 'RANKED_TEAM_5x5', function(challengerLadder) {
 
-        return res.render('ladder.html');
+            return res.render('ladder.html', {"challengerLadder":challengerLadder});
+        });
     })
     ;
 

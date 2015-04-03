@@ -6,17 +6,14 @@ exports.getChallenger = function (region, type, callback) {
 //    mock
 //    var a = {"undefined":{"id":19897772,"name":"Undefined","profileIconId":692,"summonerLevel":30,"revisionDate":1410898743000}}; callBack(a); return ;
 
-    var path = parameters.riotApi.url.base + region +
-            parameters.riotApi.url.byLeagueChallenger +
-            '?' +
-            'type=RANKED_TEAM_5x5' +
-            '&api_key=' + parameters.riotApi.key,
-                options = {
-                    host: parameters.riotApi.url.host,
-                    port: 80,
-                    path: path,
-                    method: 'GET'
-                };
+    var options = {
+            json: true,
+            method: 'GET',
+            uri: 'https://' + parameters.riotApi.url.host + parameters.riotApi.url.base + region +
+                    parameters.riotApi.url.byLeagueChallenger +
+                    '?type='  + type+
+                    '&api_key=' + parameters.riotApi.key
+        };
 
-    webService.call(url, options, callback);
+    webService.call(options, callback);
 };
