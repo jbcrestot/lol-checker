@@ -1,10 +1,11 @@
-var redis = require('redis'),
-    clc = require('cli-color'),
-    orange = clc.xterm(208),
-    client = redis.createClient(),
-    _ = require('underscore');
-    
-    redis.debug_mode = false;
+var clc = require('cli-color');
+var orange = clc.xterm(208);
+var _ = require('underscore');
+
+//var redis = require('redis');
+//    redis.debug_mode = false;
+//var client = redis.createClient();
+var client = null;
 
 /**
  * 

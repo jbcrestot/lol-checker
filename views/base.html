@@ -9,17 +9,16 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/lol-checker.css" />
         {% block stylesheets %}{% endblock stylesheets %}
         <script src="/bower_components/modernizr/modernizr.js"></script>
-        <script src="/bower_components/angular/angular.js"></script>
     </head>
     <body>
-        <div class="row">
+        <div class="row header">
             {% block header %}{% endblock header %}
         </div>
 
-        <div class="row">
+        <div class="row errors">
             {% include "errors.html" %}
         </div>
-        <div class="row">
+        <div class="row content">
             {% block content %}{% endblock content %}
         </div>
 
@@ -28,8 +27,10 @@
             JB Crestot - 2015
             {% endblock footer %}
         </footer>
+        <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/underscore/underscore-min.js"></script>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/bower_components/foundation/js/foundation.min.js"></script>
+        {% block last_avascripts %}{% endblock last_avascripts %}
     </body>
 </html>

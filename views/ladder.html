@@ -10,42 +10,47 @@
 
 {% block header %}
 <div class="large-12 columns">Classement des équipes challenger</div>
-
     {% endblock header %}
 
 {% block content %}{% raw %}
-{# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #}
+<!-- {# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #} -->
 <div ng-controller="ladderController as ladder">
-        <div class="large-2 columns"></div>
-        <div class="large-8 columns ladderTable">
-                <h3>{{ ladder.tier }} {{ ladder.getTeams()[0].division }}</h3>
-                <div class="row ladderRow" ng-class="$last ? 'lastRow' : ''" ng-repeat="team in ladder.getTeams()">
-                        <div class="large-1 columns rank">{{ $index+1 }}</div>
-                        <div class="large-5 columns summonerName">
-                                <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
-                                        {{ team.playerOrTeamName }}
-                                </a>
-                        </div>
-                        <div class="large-2 columns summonerInfo">
-                                {{ team.leaguePoints}} LP
-                        </div>
-                        <div class="large-4 columns summonerWinsLosses">
-                                <div class="row progress">
-                                        <div class="bar blue" style="width: {{ team.wins*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.wins }}</div>
-                                        <div class="bar red" style="width: {{ team.losses*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.losses }}</div>
-                                </div>
-                                <div class="row winRatio">
-                                        {{ team.wins*100/(team.wins + team.losses) | number : 0}}%
-                                </div>
-                        </div>
+    <hr/>
+    <div ng-model="teams">{{ teams }}</div>
+    <hr/>
+    <div class="large-2 columns"></div>
+    <div class="large-8 columns ladderTable">
+        <h3>{{ ladder.tier }} {{ ladder.getTeams()[0].division }}</h3>
+        <div class="row ladderRow" ng-class="$last ? 'lastRow' : ''" ng-repeat="team in ladder.getTeams()">
+            <div class="large-1 columns rank">{{ $index+1 }}</div>
+            <div class="large-5 columns summonerName">
+                <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
+                    {{ team.playerOrTeamName }}
+                </a>
+            </div>
+            <div class="large-2 columns summonerInfo">
+                {{ team.leaguePoints}} LP
+            </div>
+            <div class="large-4 columns summonerWinsLosses">
+                <div class="row progress">
+                    <div class="bar blue" style="width: {{ team.wins*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.wins }}</div>
+                    <div class="bar red" style="width: {{ team.losses*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.losses }}</div>
                 </div>
-
-                <div class="RankingTableMore">
-                        <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See more</button>
+                <div class="row winRatio">
+                    {{ team.wins*100/(team.wins + team.losses) | number : 0}}%
                 </div>
+            </div>
         </div>
-        <div class="large-2 columns"></div>
-        <script src="/javascripts/ladder.js"></script>
-        <script src="/javascripts/mock/team.js"></script>
+
+        <div class="RankingTableMore">
+            <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See more</button>
+        </div>
+    </div>
+    <div class="large-2 columns"></div>
+</div>
 {% endraw %}
 {% endblock content %}
+{% block last_avascripts %}
+    <script src="/javascripts/ladder.js"></script>
+    <script src="/javascripts/mock/team.js"></script>
+{% endblock last_avascripts %}

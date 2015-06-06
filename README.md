@@ -12,3 +12,13 @@ https://developer.riotgames.com/api/methods
 
 compass :
 Go to the f5 folder and just type : "compass compile"
+
+
+prerequire :
+NodeJS + npm (sudo apt-get install nodejs npm)
+bower (sudo npm install -g bower)
+
+Installation :
+git clone git@github.com:jbcrestot/lol-checker.git
+
+go to your lol-checker folder and execute ` bower install `

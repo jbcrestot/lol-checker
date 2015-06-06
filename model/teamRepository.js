@@ -1,11 +1,11 @@
-var redis = require('redis'),
-    clc = require('cli-color'),
-    orange = clc.xterm(208),
-    client = redis.createClient(),
-    _ = require('underscore');
+var clc = require('cli-color');
+var orange = clc.xterm(208);
+var _ = require('underscore');
 
-    redis.debug_mode = false;
-
+//var redis = require('redis');
+//    redis.debug_mode = false;
+//var client = redis.createClient();
+var client = null;
 
 exports.save = function(team) {
     redisLog( orange('{teamRepository:save} ')+ 'save user:'+ team.id +' '+ JSON.stringify( team ) );

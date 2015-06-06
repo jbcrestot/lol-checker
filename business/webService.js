@@ -26,10 +26,9 @@ exports.call = function (options, callback) {
                 });
             }
 
-
             // on log l'appel
             log(response);
-            // en cas de différent de 200, rediriger vers une page d'erreur
+            // différent de 200, rediriger vers une page d'erreur
             // ou afficher une erreur
             if (200 === response.statusCode) {
                 console.log('body');

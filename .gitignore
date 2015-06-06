@@ -27,3 +27,7 @@ node_modules
 /nbproject
 /parameters.js
 /bower_components
+/.idea/
+/.idea/*
+/.idea
+.idea
