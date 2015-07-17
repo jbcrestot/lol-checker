@@ -10,15 +10,22 @@ lol-checker isn't endorsed by Riot Games and doesn't reflect the views or opinio
 API docs
 https://developer.riotgames.com/api/methods
 
-compass :
-Go to the f5 folder and just type : "compass compile"
 
 
 prerequire :
 NodeJS + npm (sudo apt-get install nodejs npm)
+Don't forget to add an alias node ->> nodejs
 bower (sudo npm install -g bower)
 
 Installation :
 git clone git@github.com:jbcrestot/lol-checker.git
 
-go to your lol-checker folder and execute ` bower install `
+For the server side, dependency management is handle by npm so you need to execute :
+` npm install `
+
+Whereas for the client side, we use bower :
+` bower install `
+
+
+compass :
+Go to the f5 folder and just type : "compass compile"
