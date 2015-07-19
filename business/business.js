@@ -1,3 +1,10 @@
+/**
+ * @deprecated
+ * This file handle summoner's call but need to be refactor to use webservice.js
+ * Must br rename too
+ *
+ */
+
 // application
 var parameters = require('../parameters.js'),
     webService = require('../business/webService.js');

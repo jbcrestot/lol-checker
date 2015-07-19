@@ -1,8 +1,10 @@
+/**
+ * This file expose application parameters
+ * @type {exports}
+ */
 var config = require('./config.json')
 
-/*var parameters = require('../parameters.js');
- API parameters use to format address to reach
- */
+// API parameters use to format address to reach
 exports.riotApi = {
     key: config.riotApiKey,
     url : {
@@ -23,6 +25,7 @@ exports.session = {
     saveUninitialized: true
 };
 
+// common parameters
 exports.common = {
     onlineMode: false
 };

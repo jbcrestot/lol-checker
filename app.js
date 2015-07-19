@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var _ = require("underscore");
 
 var routes = require('./routes/index.js');
 var user = require('./routes/user.js');
@@ -29,8 +30,14 @@ app.use(express.static(path.join(__dirname, 'f5')));
 //add this so the browser can GET the bower files
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-
 app.use(session(parameters.session));
+// basic setup of region
+app.use(function(req, res, next) {
+    if (_.isUndefined(req.session.region)) {
+        req.session.region = 'euw';
+    }
+    next();
+})
 
 app.use('/', routes);
 app.use('/user', user);

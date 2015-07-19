@@ -1,7 +1,9 @@
 // bootstrap_
 var request = require('request'),
     clc = require('cli-color'),
-    orange = clc.xterm(208);
+    orange = clc.xterm(208),
+    _ = require('underscore'),
+    parameters = require('../parameters');
 
 /**
  * Permet d'effectué un appel web service
@@ -12,9 +14,14 @@ var request = require('request'),
  * @returns {void}
  */
 exports.call = function (options, callback) {
+    var result = '',
+        WSoptions = {
+            json: true,
+            method: 'GET',
+            uri: getWebserviceUrl(options)
+        };
 
-    var result = '';
-    request(options, function(error, response, body) {
+    request(WSoptions, function(error, response, body) {
             // on request fail
             if (error) {
                 console.log('Request Failed :');
@@ -44,6 +51,18 @@ exports.call = function (options, callback) {
                 });
             }
         });
+};
+
+
+var getWebserviceUrl = function(options) {
+    var baseUrl = 'https://' + parameters.riotApi.url.host + parameters.riotApi.url.base + options.region + options.uri,
+        query = '?api_key=' + parameters.riotApi.key;
+
+    _.each(options.query, function(element, index, list) {
+        query + '&' + index + element;
+    });
+
+    return baseUrl + query;
 };
 
 /**

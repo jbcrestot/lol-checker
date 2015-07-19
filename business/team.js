@@ -2,18 +2,29 @@
 var parameters = require('../parameters.js'),
     webService = require('../business/webService.js');
 
-exports.getChallenger = function (region, type, callback) {
+/**
+ * Classement des équipes challenger 5v5
+ * @param region
+ * @param type
+ * @param callback
+ */
+exports.getChallenger5 = function (region, callback) {
 //    mock
 //    var a = {"undefined":{"id":19897772,"name":"Undefined","profileIconId":692,"summonerLevel":30,"revisionDate":1410898743000}}; callBack(a); return ;
+    if (!parameters.common.onlineMode) {
+        callback();
 
+        return;
+    }
+
+    // get region from session
     var options = {
-            json: true,
-            method: 'GET',
-            uri: 'https://' + parameters.riotApi.url.host + parameters.riotApi.url.base + region +
-                    parameters.riotApi.url.byLeagueChallenger +
-                    '?type='  + type+
-                    '&api_key=' + parameters.riotApi.key
-        };
+        uri: parameters.riotApi.url.byLeagueChallenger,
+        region: region,
+        query : {
+            'type': 'RANKED_TEAM_5x5'
+        }
+    };
 
     webService.call(options, callback);
 };

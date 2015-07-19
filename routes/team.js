@@ -14,11 +14,14 @@ router
         return res.redirect('/team/ladder');
     })
     .get('/ladder', function(req, res) {
+        if ('param 5v5 + default') {
+            teamBusiness.getChallenger5(req.session.region, function(challengerLadder) {
 
-        teamBusiness.getChallenger('euw', 'RANKED_TEAM_5x5', function(challengerLadder) {
-
-            return res.render('ladder.html', {"challengerLadder": challengerLadder});
-        });
+                return res.render('ladder.html', {"challengerLadder": challengerLadder});
+            });
+        } else { // param 3v3
+            // teamBusiness.getChallenger3();
+        }
     })
     ;
 
