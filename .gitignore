@@ -25,9 +25,11 @@ build/Release
 node_modules
 /nbproject/private/
 /nbproject
-/parameters.js
 /bower_components
 /.idea/
 /.idea/*
 /.idea
 .idea
+
+# application specific
+/config.json

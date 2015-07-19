@@ -1,0 +1,4 @@
+{
+  "riotApiKey": "your-riot-api-key",
+  "sessionSecret": "randomSecret"
+}
