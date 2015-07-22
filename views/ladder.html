@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block app %}teamRanking{% endblock app %}
-
 {% block title %}Classement des équipes{% endblock title %}
 
 {% block stylesheets %}
@@ -14,14 +12,13 @@
 
 {% block content %}{% raw %}
 <!-- {# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #} -->
-<div ng-controller="ladderController as ladder">
-    <hr/>
-    <div ng-model="teams">{{ teams }}</div>
-    <hr/>
+<div>
+    <div>{{ teams }}</div>
+    <hr />
     <div class="large-2 columns"></div>
     <div class="large-8 columns ladderTable">
         <h3>{{ ladder.tier }} {{ ladder.getTeams()[0].division }}</h3>
-        <div class="row ladderRow" ng-class="$last ? 'lastRow' : ''" ng-repeat="team in ladder.getTeams()">
+        <div class="row ladderRow">
             <div class="large-1 columns rank">{{ $index+1 }}</div>
             <div class="large-5 columns summonerName">
                 <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
@@ -51,6 +48,5 @@
 {% endraw %}
 {% endblock content %}
 {% block last_avascripts %}
-    <script src="/javascripts/ladder.js"></script>
     <script src="/javascripts/mock/team.js"></script>
 {% endblock last_avascripts %}

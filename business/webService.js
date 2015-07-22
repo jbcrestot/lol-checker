@@ -20,12 +20,13 @@ exports.call = function (options, callback) {
             method: 'GET',
             uri: getWebserviceUrl(options)
         };
+    console.log(clc.green("{WS} "+WSoptions.uri));
 
     request(WSoptions, function(error, response, body) {
             // on request fail
             if (error) {
-                console.log('Request Failed :');
-                console.log(error);
+                console.log(clc.orange('Request Failed :'));
+                console.log(clc.orange(error));
 
                 callback('', {
                     statusCode: 500,
@@ -38,7 +39,8 @@ exports.call = function (options, callback) {
             // différent de 200, rediriger vers une page d'erreur
             // ou afficher une erreur
             if (200 === response.statusCode) {
-                console.log('body');
+                console.log(clc.green("{WS} responde with a status 200"));
+                console.log('body :');
                 console.log(body);
 
                 callback(body);
@@ -58,8 +60,12 @@ var getWebserviceUrl = function(options) {
     var baseUrl = 'https://' + parameters.riotApi.url.host + parameters.riotApi.url.base + options.region + options.uri,
         query = '?api_key=' + parameters.riotApi.key;
 
+    _.each(options.parameters, function(element, index, list) {
+        baseUrl += element + '/';
+    });
+
     _.each(options.query, function(element, index, list) {
-        query + '&' + index + element;
+        query += '&' + index + element;
     });
 
     return baseUrl + query;

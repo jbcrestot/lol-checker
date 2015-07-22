@@ -1,33 +1,42 @@
-/**
- * @deprecated
- * This file handle summoner's call but need to be refactor to use webservice.js
- * Must br rename too
- *
- */
-
 // application
 var parameters = require('../parameters.js'),
     webService = require('../business/webService.js');
 
-
+// libraries
+var _ = require('underscore');
 var clc = require('cli-color'),
     orange = clc.xterm(208),
     green = clc.xterm(40);
 
 var purifySummonerName = function(summonerName) {
+
     return summonerName.toLowerCase().replace(/ /g,'');
 };
 
-exports.getSummoner = function (region, summonerName, callBack) {
-//    mock
-//    var a = {"undefined":{"id":19897772,"name":"Undefined","profileIconId":692,"summonerLevel":30,"revisionDate":1410898743000}}; callBack(a); return ;
+exports.getSummonerByName = function (region, summonerName, callback) {
 
-        var url = parameters.riotApi.url.host + parameters.riotApi.url.base + region +
-                    parameters.riotApi.url.bySummonerName +
-                    encodeURIComponent(summonerName) + '?api_key=' + parameters.riotApi.key;
+    // get region from session
+    var options = {
+        uri: parameters.riotApi.url.bySummonerName,
+        region: region,
+        parameters : [
+            encodeURIComponent(summonerName)
+        ],
+        query : {
+            'type': 'RANKED_TEAM_5x5'
+        }
+    };
 
-        console.log(clc.green("{WS} "+ url));
+    webService.call(options, function(body, error) {
+        // on devrait appeler l'assembler pour formater les données en fonction des besoins de la vues
+        viewModel = body;
 
+        if (!_.isNull(error)) {
+            callback('', error);
+        }
+        callback(viewModel);
+    });
+    /*
     webService.call(url, function(foundUser, error) {
         // en cas d'erreur
         if ('undefined' !== typeof error) {
@@ -62,4 +71,5 @@ exports.getSummoner = function (region, summonerName, callBack) {
 
         callBack(foundUser[key]);
     });
+    */
 };

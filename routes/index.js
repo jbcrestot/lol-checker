@@ -7,7 +7,7 @@ var express = require('express'),
 var _ = require('underscore');
 // application
 var parameters = require('../parameters.js'),
-    business = require('../business/business.js'),
+    userBusiness = require('../business/user.js'),
     userRepository = require('../model/userRepository.js');
 
 // session parameters
@@ -24,31 +24,30 @@ router
             summonerName = req.param('summonerName');
 
             // summonerName is defined and not an empty string
-            if ( !_.isUndefined(summonerName) 
-                    && '' !== summonerName
-                    ) {
+            if (!_.isUndefined(summonerName) && '' !== summonerName)
+            {
                 // on vérifie qu'on a pas deja l'utilisateur
-                userRepository.get( summonerName, function( summonerId ) {
+                //userRepository.get( summonerName, function( summonerId ) {
                     // si le retour n'est pas null, on a retrouvé l'utilisateur
-                    if ( !_.isNull( summonerId ) ) {
-                        req.session.userId = summonerId;
-                        
-                        return res.redirect('/summoner/'+summonerName);
-                    }
+                    //if ( !_.isNull( summonerId ) ) {
+                    //    req.session.userId = summonerId;
+                    //
+                    //    return res.redirect('/summoner/'+summonerName);
+                    //}
 
                     // si le retour est null, c'est un nouvel utilisateur
-                    business.getSummoner('euw', summonerName, function(foundUser, err) {
+                    userBusiness.getSummonerByName(req.session.region, summonerName, function(foundUser, err) {
                         // if foundUser isn't returned, we got some error
                         if (!_.isObject(foundUser)) {
 
                             return res.render('index.html', {error: err.error.message});
                         }
                         // we save the user if needed
-                        userRepository.save(foundUser);
+                        //userRepository.save(foundUser);
 
-                        return res.render('index.html', {summonerName: summonerName});
+                        return res.render('summoner.html', {summonerName: summonerName});
                     });
-                });
+                //});
             }
             else {
                 
@@ -58,12 +57,14 @@ router
         
         // mandatory for riot API
         .get('/riot.html', function(req, res) {
-            res.render('riot.html');
+
+            return res.render('riot.html');
         })
 
         .get('/summoner/:summonerName', function(req, res) {
+
             console.log(req.session.userId);
-            res.render('summoner.html', {summonerName: req.params.summonerName});
+            return res.render('summoner.html', {summonerName: req.params.summonerName});
         })
         ;
 
