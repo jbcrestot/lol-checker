@@ -1,8 +1,8 @@
 // bootstrap_
 var request = require('request'),
+    _ = require('underscore'),
     clc = require('cli-color'),
     orange = clc.xterm(208),
-    _ = require('underscore'),
     parameters = require('../parameters');
 
 /**
@@ -25,10 +25,9 @@ exports.call = function (options, callback) {
     request(WSoptions, function(error, response, body) {
             // on request fail
             if (error) {
-                console.log(clc.orange('Request Failed :'));
-                console.log(clc.orange(error));
+                console.log(clc.red('Web Service call fail : ' + error));
 
-                callback('', {
+                callback({}, {
                     statusCode: 500,
                     message: 'lol-checker: Internal error'
                 });

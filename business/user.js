@@ -1,5 +1,6 @@
 // application
 var parameters = require('../parameters.js'),
+    mock = require('./mock/user.js'),
     webService = require('../business/webService.js');
 
 // libraries
@@ -14,6 +15,12 @@ var purifySummonerName = function(summonerName) {
 };
 
 exports.getSummonerByName = function (region, summonerName, callback) {
+
+    //if (!parameters.common.onlineMode) {
+    //    callback();
+    //
+    //    return;
+    //}
 
     // get region from session
     var options = {
