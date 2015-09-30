@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "postinstall": "compass compile --sass-dir \"f5/foundation/scss\" --css-dir \"public/stylesheets\" "
   },
   "dependencies": {
     "body-parser": "~1.6.6",

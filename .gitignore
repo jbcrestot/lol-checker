@@ -26,10 +26,9 @@ node_modules
 /nbproject/private/
 /nbproject
 /bower_components
-/.idea/
-/.idea/*
 /.idea
-.idea
+/.sass-cache
+
 
 # application specific
 /config.json

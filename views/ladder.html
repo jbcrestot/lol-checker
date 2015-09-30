@@ -7,46 +7,55 @@
 {% endblock stylesheets %}
 
 {% block header %}
-<div class="large-12 columns">Classement des équipes challenger</div>
-    {% endblock header %}
+<div class="small-12 columns"><h1>Classement des équipes challenger</h1></div>
+{% endblock header %}
 
-{% block content %}{% raw %}
+{% block content %}
 <!-- {# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #} -->
-<div>
-    <div>{{ teams }}</div>
-    <hr />
-    <div class="large-2 columns"></div>
-    <div class="large-8 columns ladderTable">
-        <h3>{{ ladder.tier }} {{ ladder.getTeams()[0].division }}</h3>
-        <div class="row ladderRow">
-            <div class="large-1 columns rank">{{ $index+1 }}</div>
-            <div class="large-5 columns summonerName">
-                <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
-                    {{ team.playerOrTeamName }}
-                </a>
-            </div>
-            <div class="large-2 columns summonerInfo">
-                {{ team.leaguePoints}} LP
-            </div>
-            <div class="large-4 columns summonerWinsLosses">
-                <div class="row progress">
-                    <div class="bar blue" style="width: {{ team.wins*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.wins }}</div>
-                    <div class="bar red" style="width: {{ team.losses*100/(team.wins + team.losses)  | number : 0 }}%;">{{ team.losses }}</div>
-                </div>
-                <div class="row winRatio">
-                    {{ team.wins*100/(team.wins + team.losses) | number : 0}}%
-                </div>
-            </div>
+<div class="small-12 columns ladderTable">
+    <!--head-->
+    <div class="row ladderRow">
+        <div class="small-1 columns text-center rank">Rank</div>
+        <div class="small-5 columns text-center summonerName">Name</div>
+        <div class="small-2 columns text-center summonerInfo">League Points</div>
+        <div class="small-4 columns text-center percentage">Win ratio</div>
+    </div>
+    <!--body-->
+    {% for team in challengerLadder.entries %}
+    <div class="row ladderRow">
+        <div class="small-1 columns text-center rank">{{ loop.index }}</div>
+        <div class="small-5 columns text-center summonerName">
+            <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
+                {{ team.playerOrTeamName }}
+            </a>
         </div>
-
-        <div class="RankingTableMore">
-            <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See more</button>
+        <div class="small-2 columns text-center summonerInfo">
+            {{ team.leaguePoints}} LP
+        </div>
+        <div class="small-4 columns text-center summonerWinsLosses">
+            <div class="progress-bar">
+                <span class="text-center progress-bar-win"
+                      style="width:{{ team.wins*100/(team.wins + team.losses)|round }}%">{{ team.wins }}W</span>
+                <span class="text-center progress-bar-losses"
+                      style="width:{{ team.losses*100/(team.wins + team.losses)|round }}%">{{ team.losses }}L</span>
+            </div>
+            {{ team.wins*100/(team.wins + team.losses) |round }}%
         </div>
     </div>
-    <div class="large-2 columns"></div>
+    {% endfor %}
+    <div class="RankingTableMore">
+        <button class="opButton primary" id="moreLadderRakingTable" data-start="50" data-target="#LadderRakingTable">See
+            more
+        </button>
+    </div>
 </div>
-{% endraw %}
 {% endblock content %}
 {% block last_avascripts %}
-    <script src="/javascripts/mock/team.js"></script>
+<script type="text/javascript">
+    {
+        {
+            challengerLadder.entries | safe | json
+        }
+    }
+</script>
 {% endblock last_avascripts %}

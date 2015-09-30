@@ -27,5 +27,5 @@ exports.session = {
 
 // common parameters
 exports.common = {
-    onlineMode: false
+    onlineMode: true
 };

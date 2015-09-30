@@ -6,6 +6,8 @@ var _ = require('underscore');
 var parameters = require('../parameters.js');
 var teamBusiness = require('../business/team.js');
 var teamRepository = require('../model/teamRepository.js');
+var Logger = require('easy-logger');
+var elog = new Logger('{Routes:Team}');
 
 /* GET users listing. */
 router
@@ -17,7 +19,9 @@ router
         if ('param 5v5 + default') {
             teamBusiness.getChallenger5(req.session.region, function(challengerLadder) {
 
-                return res.render('ladder.html', {"challengerLadder": challengerLadder});
+                return res.render('ladder.html', {
+                    challengerLadder: challengerLadder
+                });
             });
         } else { // param 3v3
             // teamBusiness.getChallenger3();

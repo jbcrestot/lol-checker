@@ -40,6 +40,9 @@ router
                         // if foundUser isn't returned, we got some error
                         if (!_.isObject(foundUser)) {
 
+                            console.log(typeof foundUser);
+                            console.log(foundUser);
+
                             return res.render('index.html', {error: err.error.message});
                         }
                         // we save the user if needed

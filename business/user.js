@@ -2,12 +2,12 @@
 var parameters = require('../parameters.js'),
     mock = require('./mock/user.js'),
     webService = require('../business/webService.js');
+var Logger = require('easy-logger');
+var elog = new Logger('{Business:User}');
+
 
 // libraries
 var _ = require('underscore');
-var clc = require('cli-color'),
-    orange = clc.xterm(208),
-    green = clc.xterm(40);
 
 var purifySummonerName = function(summonerName) {
 
@@ -37,8 +37,10 @@ exports.getSummonerByName = function (region, summonerName, callback) {
     webService.call(options, function(body, error) {
         // on devrait appeler l'assembler pour formater les données en fonction des besoins de la vues
         viewModel = body;
+        console.log(viewModel);
 
         if (!_.isNull(error)) {
+            console.log('error : '+error);
             callback('', error);
         }
         callback(viewModel);

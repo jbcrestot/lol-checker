@@ -11,35 +11,49 @@ body {
 }
 
 .ladderTable {
-        font-size: 11px;
-        font-family: Arial;
+    font-size: 11px;
+    font-family: Arial;
 }
 
-        .bar.blue {
-                float: left;
-                position: relative;
-                background-color: #3498db;
-        }
+/*                  *\
+  bar de progression
+\*                  */
+.progress-bar {
+    display: inline-block;
+    width: 100%;
+    margin-right: 3rem;
+    float: left;
+}
 
-        .bar.red {
-                float: left;
-                position: relative;
-                background-color: #e74c3c;
-        }
+.progress-bar .progress-bar-win {
+    background-color: #4ea1ed;
+    border: 1px solid #408dd4;
+    border-right: none;
+    border-bottom-left-radius: 1000px;
+    border-top-left-radius: 1000px;
+}
 
-        .ladderRow {
-                border: 1px solid gray;
-                border-bottom: none;
-        }
+.progress-bar .progress-bar-losses {
+    background-color: #f46c65;
+    border: 1px solid #d2524c;
+    border-left: none;
+    border-bottom-right-radius: 1000px;
+    border-top-right-radius: 1000px;
+}
 
-        .lastRow {
-                border-bottom: 1px solid gray;
-        }
+.ladderRow {
+    border: 1px solid gray;
+    border-bottom: none;
+}
 
-        .summonerName, .rank, .summonerInfo {
-                line-height: 3;
-        }
+.lastRow {
+    border-bottom: 1px solid gray;
+}
 
-        .summonerName {
-                font-weight: bold;
-        }
+.summonerName, .rank, .summonerInfo {
+    /*line-height: 3;*/
+}
+
+.summonerName {
+    font-weight: bold;
+}
