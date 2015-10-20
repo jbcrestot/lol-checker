@@ -14,7 +14,7 @@
 <!-- {# personnage http://ddragon.leagueoflegends.com/cdn/5.2.2/img/champion/Jinx.png #} -->
 <div class="small-12 columns ladderTable">
     <!--head-->
-    <div class="row ladderRow">
+    <div class="row first ladderRow">
         <div class="small-1 columns text-center rank">Rank</div>
         <div class="small-5 columns text-center summonerName">Name</div>
         <div class="small-2 columns text-center summonerInfo">League Points</div>
@@ -22,7 +22,7 @@
     </div>
     <!--body-->
     {% for team in challengerLadder.entries %}
-    <div class="row ladderRow">
+    <div class="row ladderRow" data-id="{{ team.playerOrTeamId }}">
         <div class="small-1 columns text-center rank">{{ loop.index }}</div>
         <div class="small-5 columns text-center summonerName">
             <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
@@ -34,10 +34,12 @@
         </div>
         <div class="small-4 columns text-center summonerWinsLosses">
             <div class="progress-bar">
-                <span class="text-center progress-bar-win"
-                      style="width:{{ team.wins*100/(team.wins + team.losses)|round }}%">{{ team.wins }}W</span>
-                <span class="text-center progress-bar-losses"
-                      style="width:{{ team.losses*100/(team.wins + team.losses)|round }}%">{{ team.losses }}L</span>
+                <div class="text-center bg-blue pull-left"
+                      style="width:{{ team.wins*100/(team.wins + team.losses)|round }}%"
+                        >{{ team.wins }}W</div>
+                <div class="text-center bg-red pull-left"
+                      style="width:{{ team.losses*100/(team.wins + team.losses)|round }}%"
+                        >{{ team.losses }}L</div>
             </div>
             {{ team.wins*100/(team.wins + team.losses) |round }}%
         </div>
@@ -51,11 +53,5 @@
 </div>
 {% endblock content %}
 {% block last_avascripts %}
-<script type="text/javascript">
-    {
-        {
-            challengerLadder.entries | safe | json
-        }
-    }
-</script>
+<script type="text/javascript" src="/javascripts/team.js"></script>
 {% endblock last_avascripts %}

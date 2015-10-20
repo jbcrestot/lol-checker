@@ -15,45 +15,65 @@ body {
     font-family: Arial;
 }
 
-/*                  *\
-  bar de progression
-\*                  */
-.progress-bar {
-    display: inline-block;
-    width: 100%;
-    margin-right: 3rem;
-    float: left;
-}
-
-.progress-bar .progress-bar-win {
-    background-color: #4ea1ed;
-    border: 1px solid #408dd4;
-    border-right: none;
-    border-bottom-left-radius: 1000px;
-    border-top-left-radius: 1000px;
-}
-
-.progress-bar .progress-bar-losses {
-    background-color: #f46c65;
-    border: 1px solid #d2524c;
-    border-left: none;
-    border-bottom-right-radius: 1000px;
-    border-top-right-radius: 1000px;
-}
-
 .ladderRow {
     border: 1px solid gray;
     border-bottom: none;
+}
+
+.ladderRow div {
+    line-height: 3rem;
 }
 
 .lastRow {
     border-bottom: 1px solid gray;
 }
 
-.summonerName, .rank, .summonerInfo {
-    /*line-height: 3;*/
+.ladderRow.first {
+    font-weight: bold;
 }
 
 .summonerName {
     font-weight: bold;
 }
+
+.bg-blue {
+    background-color: #4ea1ed;
+}
+
+.bg-red {
+    background-color: #f46c65;
+}
+
+/*                  *\
+  bar de progression
+\*                  */
+.progress-bar div {
+    display: inline-block;
+    line-height: 1.5rem;
+}
+
+.progress-bar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80%;
+    line-height: 1.4rem;
+}
+
+.progress-bar .bg-blue {
+    border: 1px solid #408dd4;
+    border-right: none;
+    border-top-left-radius: 0.45rem;
+    border-bottom-left-radius: 0.45rem;
+}
+
+.progress-bar .bg-red {
+    border: 1px solid #d2524c;
+    border-left: none;
+    border-top-right-radius: 0.45rem;
+    border-bottom-right-radius: 0.45rem;
+}
+
+/*                  *\
+  bar de progression
+\*                  */
+

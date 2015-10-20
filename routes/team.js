@@ -27,6 +27,12 @@ router
             // teamBusiness.getChallenger3();
         }
     })
+    .get('/summary', function(req, res) {
+
+        return res.render('team/summary.html', {
+
+        });
+    })
     ;
 
 module.exports = router;

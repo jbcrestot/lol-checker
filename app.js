@@ -15,7 +15,7 @@ var parameters = require('./parameters.js');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'views/team')]);
 app.set('view engine', 'swig');
 app.engine('html', require('swig').renderFile);
 
