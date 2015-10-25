@@ -24,6 +24,10 @@ body {
     line-height: 3rem;
 }
 
+.ladderRow .icon {
+    font-size: 1.1rem;
+}
+
 .lastRow {
     border-bottom: 1px solid gray;
 }

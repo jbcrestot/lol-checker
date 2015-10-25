@@ -16,15 +16,16 @@
     <!--head-->
     <div class="row first ladderRow">
         <div class="small-1 columns text-center rank">Rank</div>
-        <div class="small-5 columns text-center summonerName">Name</div>
+        <div class="small-4 columns text-center summonerName">Name</div>
         <div class="small-2 columns text-center summonerInfo">League Points</div>
         <div class="small-4 columns text-center percentage">Win ratio</div>
+        <div class="small-1 columns"></div>
     </div>
     <!--body-->
     {% for team in challengerLadder.entries %}
     <div class="row ladderRow" data-id="{{ team.playerOrTeamId }}">
         <div class="small-1 columns text-center rank">{{ loop.index }}</div>
-        <div class="small-5 columns text-center summonerName">
+        <div class="small-4 columns text-center summonerName">
             <a href="/summoner/userName=Fnatic+Hun1" target="_blank">
                 {{ team.playerOrTeamName }}
             </a>
@@ -43,6 +44,7 @@
             </div>
             {{ team.wins*100/(team.wins + team.losses) |round }}%
         </div>
+        <div class="small-1 columns text-center icon"><i class="fa fa-sort-desc"></i></div>
     </div>
     {% endfor %}
     <div class="RankingTableMore">
