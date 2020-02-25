@@ -19,7 +19,7 @@
     "debug": "~1.0.4",
     "express": "~4.13.0",
     "express-session": "~1.8.2",
-    "morgan": "~1.2.3",
+    "morgan": "~1.9.1",
     "request": "^2.53.0",
     "serve-favicon": "~2.0.1",
     "swig": "~1.4.2"
